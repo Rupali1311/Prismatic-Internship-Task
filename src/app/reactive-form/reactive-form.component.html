@@ -1,0 +1,28 @@
+<p>reactive-form works!</p>
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h2>Reactive Form</h2>
+        <label for="username">Username</label>
+        <input type="text" formControlName="username">
+        <span class="help-block" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+            Please enter a valid username.
+        </span>
+
+        <label for="email">Emailid</label>
+        <input type="email" formControlName="email">
+        <span class="help-block" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            Please enter a valid Emailid.
+        </span>
+
+        <label for="password">Password</label>
+        <input type="password" formControlName="password">
+        <span class="help-block" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Please enter a valid password.
+        </span>
+        
+        
+        
+        <button type="submit" [disabled]="!loginForm.valid">Login </button>
+       
+    </form>
+</div>

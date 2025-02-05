@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="logo"><img src="/assets/images/logo.jpeg" alt=""></div>
+    <!-- Photo Upload Box -->
+    <div class="photo-box" (click)="fileInput.click()">
+        <img *ngIf="photoPreview" [src]="photoPreview" alt="Uploaded Photo">
+        <span *ngIf="!photoPreview">Click to Upload Photo</span>
+        <input type="file" #fileInput (change)="previewPhoto($event)" accept="image/*" hidden>
+    </div>
+    <h2>Admission Form</h2>
+    <h3>Academy Name</h3>
+    <h1>Academy</h1>
+  
+    <form #admissionForm="ngForm" (ngSubmit)="FormSubmit(admissionForm)" >
+      <label>Name of Student</label>
+      <input type="text" name="studentName" ngModel required  pattern="^[A-Za-z][A-Za-z ]*$" minlength="3" >
+      <div *ngIf="admissionForm.controls['studentName']?.invalid && admissionForm.controls['studentName']?.touched">
+        <small>Name is required and should contain only letters (min 3 characters, no space at start).</small>
+      </div>
+  
+      <label>Name of Father</label>
+      <input type="text" name="fatherName" ngModel required pattern="^[A-Za-z ]+$" minlength="3">
+      <div *ngIf="admissionForm.controls['fatherName']?.invalid && admissionForm.controls['fatherName']?.touched">
+        <small>Father's name is required and should contain only letters (min 3 characters).</small>
+      </div>
+  
+      <label>Father's/Guardian's NIC</label>
+      <input type="text" name="guardianNic" ngModel required>
+      <div *ngIf="admissionForm.controls['guardianNic']?.invalid && admissionForm.controls['guardianNic']?.touched">
+        <small>NIC is required.</small>
+      </div>
+  
+      <label>Date of Birth</label>
+      <input type="date" name="dateOfBirth" ngModel required [max]="maxDate" [(ngModel)]="dateOfBirth">
+      <div *ngIf="admissionForm.controls['dateOfBirth']?.invalid && admissionForm.controls['dateOfBirth']?.touched">
+        <small>Date of birth cannot be in the future.</small>
+      </div>
+      <label for="formattedDate">Formatted Date:</label>
+      <input id="formattedDate" type="text" [value]="dateOfBirth | customDateFormat:'DD/MM/YYYY'" disabled>
+      
+      <div class="religion-gender-group-container">
+        <div style="margin-right: 20px;">
+      <label>Religion</label>
+      <div class="religion-gender-group">
+      <input type="radio" name="religion" value="Muslim" ngModel required> Muslim
+      <input type="radio" name="religion" value="Non-Muslim" ngModel required> Non-Muslim
+    </div>
+    </div>
+    <div>
+      <label>Gender</label>
+      <div class="religion-gender-group">
+      <input type="radio" name="gender" value="M" ngModel required> Male
+      <input type="radio" name="gender" value="F" ngModel required> Female
+    </div>
+    </div>
+    </div>
+  
+      <label>Student Bay Form #</label>
+      <input type="text" name="studentBayForm" ngModel required>
+      <div *ngIf="admissionForm.controls['studentBayForm']?.invalid && admissionForm.controls['studentBayForm']?.touched">
+        <small>This field is required.</small>
+      </div>
+  
+      <label>Class</label>
+      <select name="class" ngModel required>
+        <option value="" disabled>Select Class</option>
+        <option>Play Group</option>
+        <option>Nursery</option>
+        <option>Prep</option>
+        <option>One</option>
+        <option>Two</option>
+        <option>Three</option>
+        <option>Four</option>
+        <option>Five</option>
+        <option>Six</option>
+        <option>Seven</option>
+        <option>Eight</option>
+        <option>Nine</option>
+        <option>Ten</option>
+        <option>1st Year</option>
+        <option>2nd Year</option>
+        <option>Group</option>
+      </select>
+  
+      <label>Guardian Mobile No.</label>
+      <input type="text" name="guardianMobileNo" ngModel required pattern="^[0-9]{10}$" >
+      <div *ngIf="admissionForm.controls['guardianMobileNo']?.invalid && admissionForm.controls['guardianMobileNo']?.touched">
+        <small>Mobile number must be exactly 10 digits.</small>
+      </div>
+  
+      <label>Permanent Address</label>
+      <textarea name="permanentAddress" ngModel required></textarea>
+      <div *ngIf="admissionForm.controls['permanentAddress']?.invalid && admissionForm.controls['permanentAddress']?.touched">
+        <small>Address is required.</small>
+      </div>
+  
+      <label>Upload Parent's/Guardian's Signature</label>
+      <input type="file" name="guardianSignature" ngModel required accept=".png, .jpg, .jpeg">
+      <div *ngIf="admissionForm.controls['guardianSignature']?.invalid && admissionForm.controls['guardianSignature']?.touched">
+        <small>Signature is required.</small>
+      </div>
+  
+      <label>Requirements with Registration Form</label>
+      <div class="requirement-group">
+      <input type="checkbox" name="bayForm" ngModel> BAY Form
+      <input type="checkbox" name="nicCopy" ngModel> NIC Copy of Father/Guardian
+      <input type="checkbox" name="pictures" ngModel> 2 Pictures
+    </div>
+    
+      <button type="submit" [disabled]="admissionForm.invalid">Submit</button>
+      <button type="reset" >RESET</button>
+    </form>
+  </div>

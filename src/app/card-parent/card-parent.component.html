@@ -1,0 +1,13 @@
+<p>card-parent works!</p>
+<p>Parent Component Works!</p>
+<div class="card-container">
+<div *ngFor="let card of cards">
+  <app-card-child 
+    [label]="card.label" 
+    [value]="card.value" 
+    [color]="card.color"
+    >
+  </app-card-child>
+</div>
+</div>
+ 
