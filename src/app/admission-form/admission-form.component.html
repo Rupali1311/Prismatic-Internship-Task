@@ -28,9 +28,9 @@
     </div>
 
     <label>Father's/Guardian's NIC</label>
-    <input type="text" formControlName="guardianNic" >
+    <input type="number" formControlName="guardianNic" >
     <div *ngIf="admissionForm.controls.guardianNic.invalid && admissionForm.controls.guardianNic.touched">
-      <small>NIC is required.</small>
+      <small>NIC is required and contain minimun 4 digits.</small>
     </div>
 
     <label>Date of Birth</label>
@@ -57,7 +57,7 @@
     </div>
 
     <label>Student Bay Form #</label>
-    <input type="text" formControlName="studentBayForm" >
+    <input type="number" formControlName="studentBayForm" >
     <div *ngIf="admissionForm.controls.studentBayForm.invalid && admissionForm.controls.studentBayForm.touched">
       <small>This field is required.</small>
     </div>
@@ -90,7 +90,7 @@
     </div>
 
     <label>PTCL #</label>
-    <input type="text" formControlName="ptclNo">
+    <input type="number" formControlName="ptclNo">
 
     <label>Permanent Address</label>
     <textarea formControlName="permanentAddress" ></textarea>
@@ -113,7 +113,9 @@
 
     <!-- <button type="submit" (click)="FormSubmit()" [disabled]="isFormInvalid()">Submit</button> -->
     <button type="submit" [disabled]="isFormInvalid()">Submit</button>
-    <button type="reset">Reset</button>
+    <!-- <button type="reset">Reset</button> -->
     <button (click)="onReset()">RESET</button>
   </form>
 </div>
+
+<app-form-data [data]="submittedData" (edit)="editEntry($event)" (delete)="deleteEntry($event)">></app-form-data>

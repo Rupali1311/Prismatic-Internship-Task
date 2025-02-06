@@ -9,10 +9,12 @@ export class CardChildComponent {
   @Input() label!: string;
   @Input() value!: string;
   @Input() color!: string;
+  @Input() clickCount!:number;
 
-  // @Output() cardClicked: EventEmitter<string> = new EventEmitter<string>();
+  @Output() cardClicked = new EventEmitter<void>;
 
-  // onButtonClick() {
-  //   this.cardClicked.emit(this.label); // Emit the card label when the button is clicked
-  // }
+  onCardClick(){
+    this.cardClicked.emit();
+  }
+
 }

@@ -1,10 +1,14 @@
 <p>card-child works!</p>
-<div [style.background-color]="color" class="card">
+<div [style.background-color]="color" class="card" (click)="onCardClick()">
     <div class="card-content">
       <h3>{{ value }}</h3>
       <p>{{ label }}</p>
+      
     </div>
+    
   </div>
+  <p>Click Count : {{ clickCount }}</p>
 
-  <!-- <button (click)="onButtonClick()">Click Me</button> -->
+
+  
 

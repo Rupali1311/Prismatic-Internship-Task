@@ -6,6 +6,8 @@
     [label]="card.label" 
     [value]="card.value" 
     [color]="card.color"
+    [clickCount]="card.clickCount"
+    (cardClicked)="incrementCount(card)"
     >
   </app-card-child>
 </div>

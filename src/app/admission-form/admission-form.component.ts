@@ -7,6 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./admission-form.component.scss']
 })
 export class AdmissionFormComponent {
+  submittedData: any[] = []; 
+  editingIndex: number | null = null;
   
   maxDate: string;
 
@@ -27,17 +29,17 @@ export class AdmissionFormComponent {
       Validators.pattern('^[A-Za-z ]+$'), 
       Validators.minLength(3)
     ]),
-    guardianNic: new FormControl('', Validators.required),
+    guardianNic: new FormControl('',[Validators.required, Validators.minLength(4),Validators.min(0)]),
     dateOfBirth: new FormControl('', Validators.required),
     religion: new FormControl('Muslim', Validators.required),
     gender: new FormControl('Male', Validators.required),
-    studentBayForm: new FormControl('', Validators.required),
+    studentBayForm: new FormControl('', [Validators.required, Validators.minLength(4),Validators.min(0)]),
     class: new FormControl('Play Group', Validators.required),
     guardianMobileNo: new FormControl('', [
       Validators.required, 
       Validators.pattern('^[0-9]{10}$')
     ]),
-    ptclNo: new FormControl(''),
+    ptclNo: new FormControl('',[Validators.required, Validators.minLength(4),Validators.min(0)]),
     permanentAddress: new FormControl('', Validators.required),
     guardianSignature: new FormControl('', Validators.required),
     bayForm: new FormControl(false),
@@ -70,13 +72,25 @@ previewPhoto(event: Event) {
 
   FormSubmit() {
     if (this.admissionForm.valid) {
-    
-      alert("Form submitted successfully!");
-      console.log(this.admissionForm.value);
-      console.log("Studnet Name:",this.admissionForm.value.studentName);
-      console.log("Student name:", this.admissionForm.get('studentName')?.value);
-      
+      if (this.editingIndex !== null) {
+        // If in edit mode, update existing row
+        this.submittedData[this.editingIndex] = this.admissionForm.value;
+        this.editingIndex = null; // Reset edit mode
+      } else {
+        // Add new entry at the top
+        this.submittedData.unshift(this.admissionForm.value);
+      }
+      this.admissionForm.reset();
     }
+  }
+
+  editEntry(index: number) {
+    this.editingIndex = index;
+    this.admissionForm.setValue(this.submittedData[index]);
+  }
+
+  deleteEntry(index: number) {
+    this.submittedData.splice(index, 1);
   }
 
   onReset(){

@@ -22,6 +22,11 @@ import { RecieverComponent } from './reciever/reciever.component';
 import { CardChildComponent } from './card-child/card-child.component';
 import { CardParentComponent } from './card-parent/card-parent.component';
 import { PipeDemoComponent } from './pipe-demo/pipe-demo.component';
+import { FormDataComponent } from './form-data/form-data.component';
+import { UserDataComponent } from './user-data/user-data.component';
+import { NewTaskComponent } from './new-task/new-task.component';
+import { ShowTaskComponent } from './show-task/show-task.component';
+import { Observable1Component } from './observable1/observable1.component';
 // import { AdmissionFormComponent } from './admission-form/admission-form.component';
 
 
@@ -45,7 +50,12 @@ import { PipeDemoComponent } from './pipe-demo/pipe-demo.component';
     SenderComponent,
     RecieverComponent,
     CardChildComponent,
-    CardParentComponent
+    CardParentComponent,
+    FormDataComponent,
+    UserDataComponent,
+    NewTaskComponent,
+    ShowTaskComponent,
+    Observable1Component
   ],
 
   imports: [

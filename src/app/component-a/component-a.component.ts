@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CounterService } from '../services/counter.service';
 
 @Component({
@@ -6,19 +6,23 @@ import { CounterService } from '../services/counter.service';
   templateUrl: './component-a.component.html',
   styleUrls: ['./component-a.component.scss']
 })
-export class ComponentAComponent {
-  count: number;
+export class ComponentAComponent implements OnInit {
+  count: number = 0;
 
-  constructor(private counterService: CounterService) {
-    this.count = this.counterService.getCount();
+  constructor(private counterService: CounterService) {}
+
+  ngOnInit() {
+    this.counterService.count$.subscribe(value => {
+      this.count = value; // Update count when service changes
+    });
   }
 
   incrementCount() {
     this.counterService.setCount(this.count + 1);
-    this.count = this.counterService.getCount();
+    // this.count = this.counterService.getCount();
   }
 
-  currentDate: Date = new Date();
+  // currentDate: Date = new Date();
 
  
 }

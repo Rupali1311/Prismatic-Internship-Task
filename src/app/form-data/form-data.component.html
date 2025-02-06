@@ -1,0 +1,54 @@
+<p>form-data works!</p>
+<h2>Submitted Admission Forms</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Father Name</th>
+      <th>Father/Guardian NIC</th>
+      <th>Date of Birth</th>
+      <th>Religion</th>
+      <th>Gender</th>
+      <th>Student Bay Form</th>
+      <th>Class</th>
+      <th>Guardian Mobile No.</th>
+      <th>PTCL #</th>
+      <th>Permanent Address</th>
+      <th>Guardian Signature</th>
+      <th>Required Documents</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entry of data; let i = index">
+      <td>{{ entry.studentName }}</td>
+      <td>{{ entry.fatherName }}</td>
+      <td>{{ entry.guardianNic }}</td>
+      <td>{{ entry.dateOfBirth }}</td>
+      <td>{{ entry.religion }}</td>
+      <td>{{ entry.gender }}</td>
+      <td>{{ entry.studentBayForm }}</td>
+      <td>{{ entry.class }}</td>
+      <td>{{ entry.guardianMobileNo }}</td>
+      <td>{{ entry.ptclNo }}</td>
+      <td>{{ entry.permanentAddress }}</td>
+      <td>
+        <span *ngIf="entry.guardianSignature">Uploaded</span>
+        <span *ngIf="!entry.guardianSignature">Not Uploaded</span>
+      </td>
+      <td>
+        <ul>
+          <li *ngIf="entry.bayForm">BAY Form</li>
+          <li *ngIf="entry.nicCopy">NIC Copy</li>
+          <li *ngIf="entry.pictures">2 Pictures</li>
+        </ul>
+      </td>
+      <td>
+        <button (click)="editEntry(i)"> Edit</button>
+        <button (click)="deleteEntry(i)"> Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
