@@ -1,0 +1,103 @@
+/* General styles for the table container */
+.mat-elevation-z8 {
+    padding: 16px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  /* Styling for action buttons */
+  .btn {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    margin-bottom: 15px;
+  
+    button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+  
+  /* User photo styling */
+  .user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+  }
+  
+  /* Table styles */
+  .mat-table {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+  }
+  
+  th.mat-header-cell {
+    background: #3f51b5;
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  td.mat-cell, th.mat-header-cell {
+    padding: 12px;
+  }
+  
+  .mat-header-row {
+    height: 56px;
+  }
+  
+  .mat-row {
+    height: 48px;
+  }
+  
+  /* Table row hover effect */
+  .mat-row:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Checkbox alignment */
+  .mat-checkbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Actions column buttons */
+  .mat-icon-button {
+    margin: 0 5px;
+  }
+  
+  /* Mat Paginator styles */
+  .mat-paginator {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  /* Delete button disabled state */
+  button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .btn {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+  
+    .mat-elevation-z8 {
+      padding: 10px;
+    }
+  }
+  

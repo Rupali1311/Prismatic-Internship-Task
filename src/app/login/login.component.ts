@@ -1,26 +1,27 @@
 import { Component } from '@angular/core';
-
+  import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {             
-  email: string = '';
-  password: string = '';
-  showPassword: boolean = false;
-
-  // Password Toggle Function
-  togglePassword() {
-    this.showPassword = !this.showPassword;
-  }
-
-  // Form Submit Function
-  onSubmit(form: any) {
-    if (form.valid) {
-      console.log("Form Submitted!", form.value);
-      alert('Form submitted successfully');
+export class LoginComponent {
+  
+    username = '';
+    password = '';
+    errorMessage = '';
+  
+    constructor(private authService: AuthService, private router: Router) {}
+  
+    login(): void {
+      if (this.authService.login(this.username, this.password)) {
+        this.router.navigate(['/']); 
+      } else {
+        this.errorMessage = 'Invalid username or password';
+      }
     }
-  }
+  
+  
 }

@@ -1,0 +1,140 @@
+.container {
+    max-width: 600px;
+    background: linear-gradient(to right, #efe3f5, #e5e2ef);
+    padding: 20px;
+    
+    margin: auto;
+    position: relative;
+    img{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .photo-box {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #888;
+        background-color: #f9f9f9;
+        overflow: hidden;
+        // position: relative;
+        cursor: pointer;
+    }
+    // .photo-box {
+    //     width: 150px; /* Adjust as needed */
+    //     height: 150px; /* Adjust as needed */
+    //     border: 2px dashed #ccc;
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     overflow: hidden;
+    //     position: relative;
+    //     cursor: pointer;
+    //     background-color: #f8f8f8;
+      }
+      
+      .photo-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures image fits within box */
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      
+    //   .photo-box span {
+    //     position: absolute;
+    //     text-align: center;
+    //     color: #888;
+    //     font-size: 14px;
+    //   }
+      
+    h1, h2, h3 {
+        text-align: center;
+    }
+//}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    
+    width: 90%;
+    
+    padding: 20px;
+
+    small{
+        color: red;
+      }
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    input, select, textarea {
+       
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .religion-gender-group-container {
+        margin-top: 17px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .religion-gender-group {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: baseline;
+        input {
+            margin-right: 5px;
+        }
+    }
+     
+    .requirement-group {
+        display: flex;
+        align-items: center;
+        width: auto;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #0056b3;
+    }
+    button:disabled {
+        background: gray;
+        cursor: not-allowed;
+    }
+    
+  }
+  

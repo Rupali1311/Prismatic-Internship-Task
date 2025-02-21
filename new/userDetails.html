@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="C:\Users\USER\my-project\css\userStyle.css">
+   
+      
+    <script>
+        //calender and age validations
+        document.addEventListener("DOMContentLoaded", function() {
+            const dobInput = document.getElementById('dob');
+            const ageInput = document.getElementById('age');
+            const today = new Date();
+            
+            dobInput.setAttribute('max', today.toISOString().split('T')[0]);
+
+            dobInput.addEventListener('change', function() {
+                if (dobInput.value) {
+                    const dob = new Date(dobInput.value);
+                    const diff = new Date(today - dob);
+
+                    const years = diff.getFullYear() - 1970; // Adjust for epoch year
+                    const months = diff.getMonth();
+                    const days = diff.getDate() ;
+
+                    ageInput.value = `${years} years, ${months} months, ${days} days`;
+                } else {
+                    ageInput.value = '';
+                }
+            });
+
+            const emailInput = document.getElementById('email');
+            const emailMessage = document.getElementById('emailMessage');
+
+            emailInput.addEventListener('input', function() {
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    emailMessage.textContent = 'Please enter a valid email address.';
+                    emailMessage.style.color = 'red';
+                } else {
+                    emailMessage.textContent = 'Valid email address!';
+                    emailMessage.style.color = 'green';
+                }
+            });
+
+            const firstNameInput = document.getElementById('Fname');
+            const firstNameMessage = document.getElementById('firstNameMessage');
+
+            firstNameInput.addEventListener('input', function() {
+                const nameRegex = /^[A-Za-z]+$/;
+                if (!nameRegex.test(firstNameInput.value)) {
+                    firstNameMessage.textContent = 'First Name must contain only letters.';
+                    firstNameMessage.style.color = 'red';
+                } else {
+                    firstNameMessage.textContent = 'Valid First Name!';
+                    firstNameMessage.style.color = 'green';
+                }
+            });
+
+            const lastNameInput = document.getElementById('Lname');
+            const lastNameMessage = document.getElementById('lastNameMessage');
+
+            lastNameInput.addEventListener('input', function() {
+                const nameRegex = /^[A-Za-z]+$/;
+                if (!nameRegex.test(lastNameInput.value)) {
+                    lastNameMessage.textContent = 'Last Name must contain only letters.';
+                    lastNameMessage.style.color = 'red';
+                } else {
+                    lastNameMessage.textContent = 'Valid Last Name!';
+                    lastNameMessage.style.color = 'green';
+                }
+            });
+        });
+
+        //File validations
+        document.addEventListener("DOMContentLoaded", function () {
+            const fileInput = document.getElementById('image');
+            const fileErrorMessage = document.getElementById('fileErrorMessage');
+        
+            fileInput.addEventListener('change', function () {
+                const files = this.files;
+                let valid = true;
+                fileErrorMessage.textContent = ''; // Clear previous error messages
+        
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const fileType = file.type;
+        
+                    if (!fileType.startsWith('image/')) {
+                        fileErrorMessage.textContent = `File "${file.name}" is not an image. Only image files are allowed.`;
+                        valid = false;
+                        break;
+                    }
+
+                    if (file.size > 2 * 1024 * 1024) { // 2MB in bytes
+                        fileErrorMessage.textContent = `File "${file.name}" exceeds the 2MB size limit.`;
+                        valid = false;
+                        break;
+                    }
+                }
+        
+                if (!valid) {
+                    this.value = ''; // Clear the input field if invalid
+                }
+            });
+        });
+        
+
+        
+            document.addEventListener("DOMContentLoaded", function () {
+                const toggler = document.getElementById('toggler');
+                const passwordField = document.getElementById('password');
+                
+                toggler.addEventListener('click', function () {
+                    
+                    if (passwordField.type === 'password') {
+                        passwordField.type = 'text';
+                        toggler.classList.remove('fa-eye'); 
+                        toggler.classList.add('fa-eye-slash');
+                    } else {
+                        passwordField.type = 'password';
+                        toggler.classList.remove('fa-eye-slash'); 
+                        toggler.classList.add('fa-eye');
+                    }
+                });
+            });
+        
+        
+    </script>
+
+</head>
+<body>
+    <form >
+        <h2>User Details</h2>
+
+        <div class="name-group">
+            <div class="form-group">
+                <label for="Fname">First Name:</label>
+                <input type="text" id="Fname" name="Fname" placeholder="Enter your first name" required>
+                <div id="firstNameMessage"></div>
+            </div>
+            <div class="form-group">
+                <label for="Lname">Last Name:</label>
+                <input type="text" id="Lname" name="Lname" placeholder="Enter your last name" required>
+                <div id="lastNameMessage"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea name="address" id="address" placeholder="Enter your address" rows="1" maxlength="150" required></textarea>
+        </div>
+
+        <div class="name-group">
+            <div class="form-group">
+                <label for="dob">DOB:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="text" id="age" name="age" placeholder="Enter your age"  readonly required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail ID:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email ID" required>
+            <div id="emailMessage"></div>
+        </div>
+
+        <div class="name-group">
+            <div class="form-group gender">
+                <label for="gender">Gender:</label>
+            <div>
+                <input type="radio" id="male" name="gender" value="male" checked> Male
+                <input type="radio" id="female" name="gender" value="female"> Female
+            </div>
+                
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+            <select name="role">
+                <option value="" disabled selected>Select Role</option>
+                <option value="Sr.Software Engineer">Sr. Software Engineer</option>
+                <option value="Jr.Software Engineer">Jr. Software Engineer</option>
+                <option value="Intern Software Engineer">Intern Software Engineer</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="form-group hobbies">
+            <label>Hobbies:</label>
+            <div>
+                <input type="checkbox" name="hobby" value="Watching Movies" > Watching Movies
+                <input type="checkbox" name="hobby" value="Reading"> Reading
+                <input type="checkbox" name="hobby" value="Coding"> Coding
+                <input type="checkbox" name="hobby" value="Thinking"> Thinking
+                <input type="checkbox" name="hobby" value="Training"> Training
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Upload Profile:</label>
+            <input type="file" name="image" id="image" accept=".png, .jpg, .jpeg" multiple required>
+            <div id="fileErrorMessage" class="error-message" style="color: red;"></div>
+        </div>
+
+        <div class="form-group password-field">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            <i id="toggler" class="fa fa-eye"></i>
+        </div>
+
+        <button type="submit"><a href="signup.html"> Submit</a></button>
+    </form>
+</body>
+</html>

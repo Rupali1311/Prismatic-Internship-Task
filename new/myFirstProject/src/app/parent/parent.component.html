@@ -1,0 +1,24 @@
+<p>parent Component works!</p>
+<div *ngFor=" let child of ['1','2','3']">
+<app-child 
+  [message]=child
+  [count]="count"
+  [isActive]="isActive"
+  [user]="user"
+  [colors]="colors" (dataEmitter)="handleData($event)">
+  
+</app-child>
+</div>
+
+
+
+
+<!-- <app-child (dataEmitter)="handleData($event)"></app-child> -->
+<!-- 
+<h3>Received Data:</h3>
+<p>Message: {{ receivedData.message }}</p>
+<p>Number: {{ receivedData.number }}</p>
+<p>Boolean: {{ receivedData.isActive }}</p>
+<p>Person Name: {{ receivedData.person?.name }}</p>
+<p>Person Age: {{ receivedData.person?.age }}</p>
+<p>Numbers Array: {{ receivedData.numbers?.join(', ') }}</p> -->
